@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<head>
+  <style>
+    body {
+      overflow: visible;
+    }
+
+    #bigBox {
+      background-size: 5000px;
+      height: 1080px;
+      width: 5000px;
+      color: black;
+      background-image: url("floor.jpeg");
+    }
+
+    .sprite {
+      background-image: url("mate.png");
+      background-size: contain;
+      position: absolute;
+      height: 130px;
+      width: 100px;
+      color: white;
+    }
+
+    #player {
+      top: 50vh;
+      left: 50vw;
+      background-image: url("owen.png");
+      background-size: contain;
+      position: fixed;
+      height: 130px;
+      width: 100px;
+      color: white;
+    }
+    #game {
+      position: fixed;
+      top: 40vh;
+      left: 25vw;
+      background-color: black;
+      color: white;
+      height: 20vh;
+      width: 50vw;
+    }
+    a {
+      color: white;
+      font-size: 400%;
+    }
+    #taskfix {
+      top: 0px;
+      left: 0px;
+      position: fixed;
+      height: 60px;
+      width: 600px;
+      color: white;
+      font-size: 300%;
+      background-color: red;
+    }
+    #choose {
+      top: 20vh;
+      left: 20vw;
+      position: fixed;
+      height: 60vh;
+      width: 60vw;
+      color: white;
+      font-size: 300%;
+      background-color: black;
+    }
+  </style>
+</head>
+
+<body id="wtf">
+  <div id="bigBox">
+    <div class="sprite" id="b">bosco</div>
+    <div class="sprite" id="k">kyo</div>
+    <div class="sprite" id="p">patrick</div>
+    <div class="sprite" id="c">chimney</div>
+    <div id="player">pancake(birth!)</div>
+  </div>
+  <div id="taskfix">tasks: garage: redeem code</div>
+  <div id="choose">
+    dead body reported? maybe an emergency meeting
+    <br />
+    who is the impostor
+    <form onsubmit="pick();return false">
+      owen yes
+      <input type="radio" id="owen" value="yes" name="owen" />
+      no
+      <input type="radio" class="select" value="no" name="owen" />
+      <br />
+
+      chimney yes
+      <input type="radio" class="select" value="yes" name="chimney" />
+      no
+      <input type="radio" value="no" name="chimney" />
+
+      <br />
+      bosco yes
+      <input type="radio" class="select" value="yes" name="bosco" />
+      no
+      <input type="radio" value="no" name="bosco" />
+
+      <br />
+      patrick yes
+      <input type="radio" class="select" value="yes" name="patrick" />
+      no
+      <input type="radio" value="no" name="patrick" />
+
+      <br />
+      kyo yes
+      <input type="radio" class="select" value="yes" name="kyo" />
+      no
+      <input type="radio" value="no" name="kyo" />
+      <br />
+      <input type="submit" onclick="pick();return false;" />
+    </form>
+  </div>
+  <div id="game">
+    <a
+      href="https://www.humblebundle.com/?gift=FuwBFtHHEFU2fpbK"
+      target="_blank"
+      >Here ya go!</a
+    >
+  </div>
+  <script>
+    function pick() {
+      if (
+        Array.from(document.getElementsByClassName("select")).every(
+          (x) => x.checked
+        )
+      ) {
+        window.location.href =
+          "https://www.humblebundle.com/?gift=yDkNtTWxfbpyfpDt";
+      } else {
+        alert("u dead");
+        impostorbox.hidden = true;
+      }
+    }
+    taskComplete = false;
+    function ir(x, min, max) {
+      return x > min && x < max;
+    }
+    function getRandomArbitrary(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+    var pos = [100, 100];
+    window.addEventListener("scroll", function (event) {
+      event.preventDefault();
+      window.scrollTo(pos[0], pos[1]);
+    });
+    window.addEventListener("keydown", function (event) {
+      switch (event.key) {
+        case "ArrowLeft":
+          pos[0] -= 10;
+          break;
+        case "ArrowRight":
+          pos[0] += 10;
+          break;
+        case "ArrowUp":
+          pos[1] -= 10;
+          break;
+        case "ArrowDown":
+          pos[1] += 10;
+          break;
+      }
+    });
+    var locs = [];
+    Array.from(document.getElementsByClassName("sprite")).forEach(
+      (element, index) => {
+        locs.push([getRandomArbitrary(1, 1200), getRandomArbitrary(1, 1200)]);
+      }
+    );
+    function moveRands() {
+      console.log("a");
+      Array.from(document.getElementsByClassName("sprite")).forEach(
+        (element, index) => {
+          element.style.top = locs[index][0] + pos[0] + "px";
+          element.style.left = locs[index][1] + pos[1] + "px";
+          locs[index][0] += getRandomArbitrary(-100, 100);
+          locs[index][1] += getRandomArbitrary(-100, 100);
+        }
+      );
+    }
+    var impostorbox = document.getElementById("choose");
+    impostorbox.hidden = true;
+    function impose() {
+      impostorbox.hidden = false;
+    }
+    var gamecodebox = document.getElementById("game");
+    gamecodebox.hidden = true;
+    window.onclick = (e) => {
+      console.log(pos);
+      if (taskComplete) {
+        taskComplete = false;
+        gamecodebox.hidden = true;
+      } else if (ir(pos[0], 2500, 13000)) {
+        gamecodebox.hidden = false;
+        taskComplete = true;
+        setTimeout(impose, 10000);
+      }
+    };
+    movearoudn = setInterval(moveRands, 1000);
+  </script>
+</body>

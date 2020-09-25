@@ -36,6 +36,7 @@
     <div class="sprite" id="k">kyo</div>
     <div class="sprite" id="p">patrick</div>
     <div class="sprite" id="c">chimney</div>
+
     <div id="player">pancake(birth!)</div>
   </div>
   <script>
@@ -78,12 +79,16 @@
         (element, index) => {
           element.style.top = locs[index][0] + pos[0] + "px";
           element.style.left = locs[index][1] + pos[1] + "px";
-          locs[index][0] += getRandomArbitrary(-100, 100);
-          locs[index][1] += getRandomArbitrary(-100, 100);
+          locs[index][0] += getRandomArbitrary(-50, 50);
+          locs[index][1] += getRandomArbitrary(-50, 50);
         }
       );
     }
-    window.onclick = (e) => {};
+    window.onclick = (e) => {
+      if (ir(pos[0], 530, 1060) && ir(pos[1], 510, 800)) {
+        window.location.href = "qwerty.html";
+      }
+    };
     movearoudn = setInterval(moveRands, 1000);
   </script>
 </body>
