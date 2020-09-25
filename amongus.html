@@ -6,9 +6,17 @@
     }
     #bigBox {
       background-image: url("back.png");
-      background-size: 150vw;
+      background-size: 200vw;
       height: 2160px;
       width: 3840px;
+    }
+    .sprite {
+      background-image: url("mate.png");
+      background-size: contain;
+      position: absolute;
+      height: 130px;
+      width: 100px;
+      color: white;
     }
   </style>
 </head>
@@ -21,6 +29,12 @@
     <div id="player"></div>
   </div>
   <script>
+    function ir(x, min, max) {
+      return x > min && x < max;
+    }
+    function getRandomArbitrary(min, max) {
+      return Math.random() * (max - min) + min;
+    }
     var pos = [100, 100];
     window.addEventListener("scroll", function (event) {
       event.preventDefault();
@@ -35,12 +49,31 @@
           pos[0] += 10;
           break;
         case "ArrowUp":
-          pos[1] += 10;
+          pos[1] -= 10;
           break;
         case "ArrowDown":
           pos[1] += 10;
           break;
       }
     });
+    var locs = [];
+    Array.from(document.getElementsByClassName("sprite")).forEach(
+      (element, index) => {
+        locs.push([getRandomArbitrary(1, 1200), getRandomArbitrary(1, 1200)]);
+      }
+    );
+    function moveRands() {
+      console.log("a");
+      Array.from(document.getElementsByClassName("sprite")).forEach(
+        (element, index) => {
+          element.style.top = locs[index][0] + pos[0] + "px";
+          element.style.left = locs[index][1] + pos[1] + "px";
+          locs[index][0] += getRandomArbitrary(-100, 100);
+          locs[index][1] += getRandomArbitrary(-100, 100);
+        }
+      );
+    }
+    window.onClick((e) => {});
+    movearoudn = setInterval(moveRands, 1000);
   </script>
 </body>
