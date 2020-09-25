@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    body {
+      overflow: visible;
+    }
+    #bigBox {
+      background-image: url("back.png");
+      background-size: 150vw;
+      height: 2160px;
+      width: 3840px;
+    }
+  </style>
+</head>
+<body id="wtf">
+  <div id="bigBox">
+    <div class="sprite" id="b">bosco</div>
+    <div class="sprite" id="k">kyo</div>
+    <div class="sprite" id="p">patrick</div>
+    <div class="sprite" id="c">chimney</div>
+    <div id="player"></div>
+  </div>
+  <script>
+    var pos = [100, 100];
+    window.addEventListener("scroll", function (event) {
+      event.preventDefault();
+      window.scrollTo(pos[0], pos[1]);
+    });
+    window.addEventListener("keydown", function (event) {
+      switch (event.key) {
+        case "ArrowLeft":
+          pos[0] -= 10;
+          break;
+        case "ArrowRight":
+          pos[0] += 10;
+          break;
+        case "ArrowUp":
+          pos[1] += 10;
+          break;
+        case "ArrowDown":
+          pos[1] += 10;
+          break;
+      }
+    });
+  </script>
+</body>
