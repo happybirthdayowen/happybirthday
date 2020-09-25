@@ -18,6 +18,16 @@
       width: 100px;
       color: white;
     }
+    #player {
+      top: 50vh;
+      left: 50vw;
+      background-image: url("owen.png");
+      background-size: contain;
+      position: fixed;
+      height: 130px;
+      width: 100px;
+      color: white;
+    }
   </style>
 </head>
 <body id="wtf">
@@ -26,7 +36,7 @@
     <div class="sprite" id="k">kyo</div>
     <div class="sprite" id="p">patrick</div>
     <div class="sprite" id="c">chimney</div>
-    <div id="player"></div>
+    <div id="player">pancake(birth!)</div>
   </div>
   <script>
     function ir(x, min, max) {
@@ -73,7 +83,7 @@
         }
       );
     }
-    window.onClick((e) => {});
+    window.onclick = (e) => {};
     movearoudn = setInterval(moveRands, 1000);
   </script>
 </body>
